@@ -1,0 +1,9 @@
+<!ELEMENT users (user*)>
+
+<!ELEMENT user (fullname, role, dob, password)>
+<!ATTLIST user email CDATA #REQUIRED>
+
+<!ELEMENT fullname (#PCDATA)>
+<!ELEMENT role (#PCDATA)>
+<!ELEMENT dob (#PCDATA)>
+<!ELEMENT password (#PCDATA)>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+    <page id="home" title="Home">
+        <content>Welcome to the secure site!</content>
+        <link to="page1">Go to Page 1</link>
+    </page>
+
+    <page id="page1" title="Page 1">
+        <content>This is Page 1 content.</content>
+        <link to="home">Back to Home</link>
+    </page>
+</site>
