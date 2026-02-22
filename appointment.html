@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>BrightCare| Book Appointment</title>
+
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+   <!-- Bootstrap Icons -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+
+   <link rel="stylesheet" href="style.css">
+
+   <style>
+       footer {
+           background-color: #E0F2F1;
+       }
+
+       .footer-icon {
+           font-size: 1.5rem;
+           color: #00897B;
+           margin-right: 15px;
+       }
+
+       .footer-icon:hover {
+           color: #004D40;
+       }
+
+       main {
+           padding-top: 2rem;
+           padding-bottom: 2rem;
+       }
+
+       .input-light {
+           background-color: #E9E8E8;
+           border: 1px solid #ccc;
+       }
+
+       .btn-grey {
+           background-color: #C1C6CA;
+           color: #000;
+           border: none;
+           padding: 0.5rem 1.5rem;
+           border-radius: 4px;
+           font-weight: 500;
+       }
+
+       .btn-grey:hover {
+           background-color: #b1b6bb;
+       }
+
+       .btn-select {
+           background-color: #C1C6CA;
+           border: none;
+           border-radius: 4px;
+           padding: 0.75rem 1rem;
+           width: 100%;
+           text-align: left;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+       }
+
+       .btn-select span.chevron {
+           font-size: 1.2rem;
+       }
+
+       .select-menu {
+           border-radius: 4px;
+           border: 1px solid #ccc;
+           margin-top: 0.25rem;
+           background-color: #ffffff;
+           box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+           display: none;
+       }
+
+       .select-menu button {
+           width: 100%;
+           border: none;
+           background: #ffffff;
+           padding: 0.5rem 0.75rem;
+           text-align: left;
+       }
+
+       .select-menu button:hover {
+           background: #E0F2F1;
+       }
+
+       .time-column-title {
+           font-weight: 600;
+           margin-bottom: 0.25rem;
+       }
+
+       .modal-overlay {
+           position: fixed;
+           inset: 0;
+           background: rgba(0, 0, 0, 0.35);
+           display: none;
+           align-items: center;
+           justify-content: center;
+           z-index: 1050;
+       }
+
+       .modal-overlay.open {
+           display: flex;
+       }
+
+       .modal-card {
+           background-color: #ffffff;
+           max-width: 520px;
+           width: 95%;
+           border-radius: 6px;
+           box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+           padding: 2rem;
+       }
+
+       .modal-title-custom {
+           font-size: 1.6rem;
+           font-weight: 700;
+           text-align: center;
+           margin-bottom: 1.5rem;
+       }
+
+       .modal-label {
+           font-weight: 600;
+           margin-right: 0.75rem;
+       }
+   </style>
+</head>
+<body>
+
+   <!--Nav bar-->
+   <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#00897B;">
+       <div class="container">
+
+           <!-- Brand -->
+           <a class="navbar-brand fw-bold">BrightCare</a>
+
+           <!-- Mobile-only links (without JS and BootStraop) -->
+           <a class="navbar-toggler text-lightgrey" href="index.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Home</a>
+           <a class="navbar-toggler text-lightgrey" href="notification.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Notifications</a>
+           <a class="navbar-toggler text-lightgrey" href="profile.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Manage Profile</a>
+           <ul class="navbar-nav ms-auto">
+               <li class="nav-item">
+                   <a class="nav-link" href="landing.html">Logout</a>
+               </li>
+           </ul>
+
+           <!-- Desktop version -->
+           <div class="collapse navbar-collapse show">
+               <ul class="navbar-nav ms-auto align-items-center">
+
+                   <li class="nav-item d-none d-lg-block">
+                       <a class="nav-link" href="index.html">Home</a>
+                   </li>
+
+                   <li class="nav-item d-none d-lg-block">
+                       <a class="nav-link" href="notification.html">Notifications</a>
+                   </li>
+                   <li class="nav-item d-none d-lg-block">
+                       <a class="nav-link" href="profile.html">Manage Profile</a>
+                   </li>
+
+               </ul>
+           </div>
+
+       </div>
+   </nav>
+   <!--End of NavBar-->
+
+   <main>
+       <div class="container">
+
+           <h1 class="text-center mb-4">Book Appointment</h1>
+
+           <div class="row">
+               <div class="col-lg-4 col-md-6">
+
+                   <!-- Select a Service & Dentist -->
+                   <p class="fw-semibold mb-2">Select a Service &amp; Dentist</p>
+
+                   <!-- SERVICE -->
+                   <div class="mb-3 position-relative">
+                       <button type="button" class="btn-select w-100" id="serviceButton">
+                           <span id="serviceLabel">Select a Service</span>
+                           <span class="chevron">&gt;</span>
+                       </button>
+                       <div class="select-menu" id="serviceMenu">
+                           <button type="button" data-value="Regular Check Up">Regular Check Up</button>
+                           <button type="button" data-value="Cleaning">Cleaning</button>
+                           <button type="button" data-value="Filling &amp; Crown">Filling &amp; Crown</button>
+                           <button type="button" data-value="Consultation">Consultation</button>
+                       </div>
+                   </div>
+
+                   <!-- DENTIST -->
+                   <div class="mb-4 position-relative">
+                       <button type="button" class="btn-select w-100" id="dentistButton">
+                           <span id="dentistLabel">Select a Dentist</span>
+                           <span class="chevron">&gt;</span>
+                       </button>
+                       <div class="select-menu" id="dentistMenu">
+                           <button type="button" data-value="Any Available Doctor">Any Available Doctor</button>
+                           <button type="button" data-value="Dr. Sarah Thompson">Dr. Sarah Thompson</button>
+                           <button type="button" data-value="Dr. Shiela Gamble">Dr. Shiela Gamble</button>
+                           <button type="button" data-value="Dr. Amir Patel">Dr. Amir Patel</button>
+                           <button type="button" data-value="Dr. Lina Park">Dr. Lina Park</button>
+                       </div>
+                   </div>
+
+                   <!-- Choose Date & Time -->
+                   <p class="fw-semibold mb-2">Choose Date &amp; Time</p>
+
+                   <div class="mb-3">
+                       <input type="date" id="appointmentDate" class="form-control input-light" value="2025-12-23">
+                   </div>
+
+                   <div class="row">
+                       <div class="col-6">
+                           <div class="time-column-title">Morning</div>
+                           <div class="form-check">
+                               <input class="form-check-input" type="radio" name="timeRadio" id="time9" value="9:00 am">
+                               <label class="form-check-label" for="time9">9:00 am</label>
+                           </div>
+                           <div class="form-check">
+                               <input class="form-check-input" type="radio" name="timeRadio" id="time10" value="10:00 am">
+                               <label class="form-check-label" for="time10">10:00 am</label>
+                           </div>
+                           <div class="form-check">
+                               <input class="form-check-input" type="radio" name="timeRadio" id="time11" value="11:00 am" checked>
+                               <label class="form-check-label" for="time11">11:00 am</label>
+                           </div>
+                       </div>
+
+                       <div class="col-6">
+                           <div class="time-column-title">Afternoon</div>
+                           <div class="form-check">
+                               <input class="form-check-input" type="radio" name="timeRadio" id="time1" value="1:00 pm">
+                               <label class="form-check-label" for="time1">1:00 pm</label>
+                           </div>
+                           <div class="form-check">
+                               <input class="form-check-input" type="radio" name="timeRadio" id="time215" value="2:15 pm">
+                               <label class="form-check-label" for="time215">2:15 pm</label>
+                           </div>
+                           <div class="form-check">
+                               <input class="form-check-input" type="radio" name="timeRadio" id="time345" value="3:45 pm">
+                               <label class="form-check-label" for="time345">3:45 pm</label>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="mt-4 d-flex gap-3">
+                       <button type="button" class="btn-grey" id="reviewBtn">Review &amp; Confirm</button>
+                       <button type="button" class="btn-grey" id="cancelBtn">Cancel</button>
+                   </div>
+
+               </div>
+           </div>
+
+       </div>
+   </main>
+
+   <!-- Review & Confirm pop-up -->
+   <div class="modal-overlay" id="reviewModal">
+       <div class="modal-card">
+           <div class="modal-title-custom">Review &amp; Confirm</div>
+
+           <div class="mb-2">
+               <span class="modal-label">Patient’s Name:</span>
+               <span id="revPatientName">Karen, Typical</span>
+           </div>
+           <div class="mb-2">
+               <span class="modal-label">Date of Birth:</span>
+               <span id="revDob">May, 23, 1986</span>
+           </div>
+           <div class="mb-2">
+               <span class="modal-label">Dental Service:</span>
+               <span id="revService">Regular Check Up</span>
+           </div>
+           <div class="mb-2">
+               <span class="modal-label">Preferred Date &amp; Time:</span>
+               <span id="revDateTime">Dec 23, 2025 | 11:00 am</span>
+           </div>
+           <div class="mb-4">
+               <span class="modal-label">Doctor’s Name:</span>
+               <span id="revDentist">Dr. Sarah Thompson</span>
+           </div>
+
+           <div class="d-flex justify-content-center gap-3">
+               <button type="button" class="btn-grey" onclick="window.location.href='payment.html'">Confirm Appointment</button>
+               <button type="button" class="btn-grey" id="changeSelectionBtn">Change Selection</button>
+           </div>
+       </div>
+   </div>
+
+   <!--Footer-->
+   <footer class="mt-5 py-4">
+       <div class="container text-left">
+
+           <!-- Social Icons -->
+           <div class="mb-3">
+               <a href="#" class="footer-icon"><i class="bi bi-facebook"></i></a>
+               <a href="#" class="footer-icon"><i class="bi bi-instagram"></i></a>
+               <a href="#" class="footer-icon"><i class="bi bi-linkedin"></i></a>
+           </div>
+
+           <!-- Privacy / Address -->
+           <p class="mb-1, text-left"><a href="#" class="text-dark text-decoration-underline">Privacy Policy</a></p>
+           <p class="mb-1, text-left">3500 Matcha Ave West,<br>
+               MatchaLand, M2A 3T4</p>
+
+           <!-- Copyright -->
+           <p class="mb-0, text-center">&copy; 2025 BrightCare Dental. All Rights Reserved.</p>
+       </div>
+   </footer>
+
+   <script>
+       // Simple “dropdown” functionality for service & dentist
+       const serviceButton = document.getElementById('serviceButton');
+       const serviceMenu   = document.getElementById('serviceMenu');
+       const serviceLabel  = document.getElementById('serviceLabel');
+
+       const dentistButton = document.getElementById('dentistButton');
+       const dentistMenu   = document.getElementById('dentistMenu');
+       const dentistLabel  = document.getElementById('dentistLabel');
+
+       let selectedService = '';
+       let selectedDentist = '';
+
+       serviceButton.addEventListener('click', () => {
+           serviceMenu.style.display = serviceMenu.style.display === 'block' ? 'none' : 'block';
+           dentistMenu.style.display = 'none';
+       });
+
+       dentistButton.addEventListener('click', () => {
+           dentistMenu.style.display = dentistMenu.style.display === 'block' ? 'none' : 'block';
+           serviceMenu.style.display = 'none';
+       });
+
+       serviceMenu.querySelectorAll('button').forEach(btn => {
+           btn.addEventListener('click', () => {
+               selectedService = btn.getAttribute('data-value');
+               serviceLabel.textContent = selectedService;
+               serviceMenu.style.display = 'none';
+           });
+       });
+
+       dentistMenu.querySelectorAll('button').forEach(btn => {
+           btn.addEventListener('click', () => {
+               selectedDentist = btn.getAttribute('data-value');
+               dentistLabel.textContent = selectedDentist;
+               dentistMenu.style.display = 'none';
+           });
+       });
+
+       // Close menus if clicking outside
+       document.addEventListener('click', (e) => {
+           if (!serviceButton.contains(e.target) && !serviceMenu.contains(e.target)) {
+               serviceMenu.style.display = 'none';
+           }
+           if (!dentistButton.contains(e.target) && !dentistMenu.contains(e.target)) {
+               dentistMenu.style.display = 'none';
+           }
+       });
+
+       // Time + popup logic
+       const reviewBtn = document.getElementById('reviewBtn');
+       const cancelBtn = document.getElementById('cancelBtn');
+       const reviewModal = document.getElementById('reviewModal');
+       const changeSelectionBtn = document.getElementById('changeSelectionBtn');
+       const confirmBtn = document.getElementById('confirmAppointmentBtn');
+
+       const dateInput = document.getElementById('appointmentDate');
+       const timeRadios = document.querySelectorAll('input[name="timeRadio"]');
+
+       function getSelectedTime() {
+           let time = '';
+           timeRadios.forEach(r => {
+               if (r.checked) time = r.value;
+           });
+           return time;
+       }
+
+       reviewBtn.addEventListener('click', () => {
+           // basic validation
+           if (!selectedService) {
+               alert('Please select a service.');
+               return;
+           }
+           if (!selectedDentist) {
+               alert('Please select a dentist.');
+               return;
+           }
+
+           const date = dateInput.value || 'Dec 23, 2025';
+           const time = getSelectedTime() || '11:00 am';
+
+           document.getElementById('revService').textContent = selectedService;
+           document.getElementById('revDentist').textContent = selectedDentist;
+           document.getElementById('revDateTime').textContent = date + ' | ' + time;
+
+           reviewModal.classList.add('open');
+       });
+
+       changeSelectionBtn.addEventListener('click', () => {
+           reviewModal.classList.remove('open');
+       });
+
+       confirmBtn.addEventListener('click', () => {
+           reviewModal.classList.remove('open');
+           alert('Your appointment has been booked.');
+       });
+
+       cancelBtn.addEventListener('click', () => {
+           dateInput.value = '';
+           timeRadios.forEach(r => r.checked = false);
+           // keep service/dentist as is; or reset if you want:
+           // selectedService = ''; selectedDentist = '';
+       });
+
+       reviewModal.addEventListener('click', (e) => {
+           if (e.target === reviewModal) {
+               reviewModal.classList.remove('open');
+           }
+       });
+   </script>
+
+</body>
+</html>
