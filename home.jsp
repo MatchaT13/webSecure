@@ -84,11 +84,11 @@
         <a class="navbar-brand fw-bold">BrightCare</a>
 
         <!-- Mobile-only links (without JS and BootStraop) -->
-        <a class="navbar-toggler text-lightgrey" href="about.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">About Us</a>
-        <a class="navbar-toggler text-lightgrey" href="profile.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Manage Profile</a>
+        <a class="navbar-toggler text-lightgrey" href="about.jsp" style="text-decoration:none; background: none; box-shadow: none; border: none;">About Us</a>
+        <a class="navbar-toggler text-lightgrey" href="profile.jsp" style="text-decoration:none; background: none; box-shadow: none; border: none;">Manage Profile</a>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="landing.html">Logout</a>
+                <a class="nav-link" href="home.jsp">Logout</a>
             </li>
         </ul>
 
@@ -96,10 +96,10 @@
         <div class="collapse navbar-collapse show">
             <ul class="navbar-nav ms-auto align-items-center">
                 <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="about.htmlt">About Us</a>
+                    <a class="nav-link" href="about.jsp">About Us</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="profile.html">Manage Profile</a>
+                    <a class="nav-link" href="profile.jsp">Manage Profile</a>
                 </li>
 
             </ul>
@@ -125,13 +125,13 @@
         </div>
         <div class="row" style="margin-top: 20px;">
           <div class="col">
-            <a href="appointment.html" class="navButton">Schedule Appointment</a>
+            <a href="appointment.jsp" class="navButton">Schedule Appointment</a>
           </div>
           <div class="col">
-            <a href="notification.html" class="navButton">Notifications</a>
+            <a href="notification.jsp" class="navButton">Notifications</a>
           </div>
           <div class="col">
-            <a href="contact.html" class="navButton">Contact Us</a>
+            <a href="contact.jsp" class="navButton">Contact Us</a>
           </div>
         </div>
       </div>
