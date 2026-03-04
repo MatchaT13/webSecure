@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<appointments>
+    
+    <appointment>
+        <username>mT</username>
+        <service>Cleaning</service>
+        <dentist>Any Available Doctor</dentist>
+        <date>2026-01-01</date>
+        <time>1:00 pm</time>
+    </appointment>
+</appointments>
