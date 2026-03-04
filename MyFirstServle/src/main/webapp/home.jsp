@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    // Redirect if not logged in
+    
+    if(session == null || session.getAttribute("username") == null){
+        response.sendRedirect("login.html"); // redirect to login if not logged in
+        return; // stop further processing
+    }
+
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+
+    // Get current user info from session
+    String fullname = (String) session.getAttribute("fullname");
+%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -88,7 +104,7 @@
         <a class="navbar-toggler text-lightgrey" href="profile.jsp" style="text-decoration:none; background: none; box-shadow: none; border: none;">Manage Profile</a>
         <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-                <a class="nav-link" href="home.jsp">Logout</a>
+                <a href="<%=request.getContextPath()%>/logout">Logout</a>
             </li>
         </ul>
 
@@ -109,7 +125,7 @@
 </nav>
 <!--End of NavBar-->
 <main>
-    <h1 style="text-align: center;">Welcome, Karen!</h1>
+    <h1 style="text-align: center;">Welcome, <%= fullname %>!</h1>
 <section style="background-color: #E0F2F1; padding: 5rem; margin: 2rem">
     <div class="container text-center">
         <div class="row" class="iconSize">
@@ -125,7 +141,7 @@
         </div>
         <div class="row" style="margin-top: 20px;">
           <div class="col">
-            <a href="appointment.jsp" class="navButton">Schedule Appointment</a>
+            <a href="bookAppointment.jsp" class="navButton">Schedule Appointment</a>
           </div>
           <div class="col">
             <a href="notification.jsp" class="navButton">Notifications</a>

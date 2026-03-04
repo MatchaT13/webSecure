@@ -61,7 +61,7 @@
     <button type="submit" class="btn btn-success mt-3 w-100">Register</button>
 </form>
 
-        <p class="mt-3">Already a member? <a href="login.jsp">Sign in</a></p>
+        <p class="mt-3">Already a member? <a href="login.html">Sign in</a></p>
     </div>
 </div>
 

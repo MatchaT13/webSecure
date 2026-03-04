@@ -10,63 +10,57 @@ import java.io.File;
 
 public class LoginServlet extends HttpServlet {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    
+	    //️Get login input from user
+	    String userId = request.getParameter("userid");  // <-- declare userId
+	    String password = request.getParameter("password"); // <-- declare password
 
-	    String userInput = request.getParameter("userid");
-	    String passInput = request.getParameter("password");
-
+	    //️Prepare variables for user info from XML
+	    String fullname = "";  // <-- declare fullname
+	    String dob = "";       // <-- declare date of birth
+	    String email = "";     // <-- declare email
+	    String role = "";      // <-- declare role
 	    boolean validUser = false;
 
+	    //Check users.xml
 	    try {
-
-	        // Get real path to users.xml inside WEB-INF
 	        String path = getServletContext().getRealPath("/WEB-INF/users.xml");
-	        File xmlFile = new File(path);
-
 	        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	        DocumentBuilder builder = factory.newDocumentBuilder();
-	        Document doc = builder.parse(xmlFile);
-
+	        Document doc = builder.parse(path);
 	        doc.getDocumentElement().normalize();
 
-	        NodeList userList = doc.getElementsByTagName("user");
-
-	        for (int i = 0; i < userList.getLength(); i++) {
-
-	            Node node = userList.item(i);
-
-	            if (node.getNodeType() == Node.ELEMENT_NODE) {
-
-	                Element element = (Element) node;
-
-	                String userid = element.getElementsByTagName("userid")
-	                        .item(0).getTextContent();
-
-	                String password = element.getElementsByTagName("password")
-	                        .item(0).getTextContent();
-
-	                if (userid.equals(userInput) && password.equals(passInput)) {
-	                    validUser = true;
-	                    break;
-	                }
+	        NodeList users = doc.getElementsByTagName("user");
+	        for(int i=0;i<users.getLength();i++){
+	            Element u = (Element) users.item(i);
+	            String uid = u.getElementsByTagName("userid").item(0).getTextContent();
+	            String pwd = u.getElementsByTagName("password").item(0).getTextContent();
+	            if(uid.equals(userId) && pwd.equals(password)){
+	                // Save info to variables
+	                fullname = u.getElementsByTagName("fullname").item(0).getTextContent();
+	                dob = u.getElementsByTagName("dob").item(0).getTextContent();
+	                email = u.getElementsByTagName("email").item(0).getTextContent();
+	                role = u.getElementsByTagName("role").item(0).getTextContent();
+	                validUser = true;
+	                break;
 	            }
 	        }
+	    } catch(Exception e){ e.printStackTrace(); }
 
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    }
-
-	    if (validUser) {
-
+	    // If login is valid, store info in session
+	    if(validUser){
 	        HttpSession session = request.getSession();
-	        session.setAttribute("username", userInput);
+	        session.setAttribute("username", userId);
+	        session.setAttribute("fullname", fullname);
+	        session.setAttribute("dob", dob);
+	        session.setAttribute("email", email);
+	        session.setAttribute("role", role);
 
 	        response.sendRedirect("home.jsp");
-
 	    } else {
-
-	        response.sendRedirect("login.html");
+	        request.setAttribute("error", "Invalid username or password");
+	        request.getRequestDispatcher("login.html").forward(request, response);
 	    }
 	}
 

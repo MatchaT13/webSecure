@@ -1,0 +1,122 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Redirect if not logged in
+    
+    if(session == null || session.getAttribute("username") == null){
+        response.sendRedirect("login.html"); // redirect to login if not logged in
+        return; // stop further processing
+    }
+
+    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.
+    response.setHeader("Pragma", "no-cache"); // HTTP 1.0.
+    response.setDateHeader("Expires", 0); // Proxies.
+
+    // Get current user info from session
+    String fullname = (String) session.getAttribute("fullname");
+    String dob = (String) session.getAttribute("dob");
+    String email = (String) session.getAttribute("email");
+    String role = (String) session.getAttribute("role");
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile | BrightCare</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        footer { background-color: #E0F2F1; }
+        .footer-icon { font-size: 1.5rem; color: #00897B; margin-right: 15px; }
+        .footer-icon:hover { color: #004D40; }
+        main { margin: 2rem; padding-top: 2rem; padding-bottom: 2rem; }
+        .contact-icon { font-size: 2rem; margin-right: 0.75rem; }
+        .btn-grey { background-color: #C1C6CA; color: #000; border: none; padding: 0.5rem 1.5rem; border-radius: 4px; font-weight: 500; }
+        .btn-grey:hover { background-color: #b1b6bb; }
+        .big-icon{ font-size: 5rem; text-align: center; }
+    </style>
+</head>
+<body>
+
+<!--Nav bar-->
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#00897B;">
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand fw-bold">BrightCare</a>
+
+        <!-- Mobile-only links (without JS and BootStraop) -->
+        <a class="navbar-toggler text-lightgrey" href="index.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Home</a>
+        <a class="navbar-toggler text-lightgrey" href="notification.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Notifications</a>
+        <a class="navbar-toggler text-white" href="profile.html" style="text-decoration:none; background: none; box-shadow: none; border: none;">Manage Profile</a>
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a href="<%=request.getContextPath()%>/logout">Logout</a>
+            </li>
+        </ul>
+
+        <!-- Desktop version -->
+        <div class="collapse navbar-collapse show">
+            <ul class="navbar-nav ms-auto align-items-center">
+
+                <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="home.jsp">Home</a>
+                </li>
+
+                <li class="nav-item d-none d-lg-block">
+                    <a class="nav-link" href="notification.html">Notifications</a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<main>
+    <!-- User Info -->
+    <div class="text-center mb-5">
+        <i class="bi bi-person-circle big-icon"></i>
+        <h1><%= fullname %></h1>
+        <p><%= role %></p>
+        <a href="#">Edit profile image</a>
+    </div>
+
+    <!-- Personal Info -->
+    <section style="background-color: #E0F2F1; padding: 3rem; margin-bottom: 3rem;">
+        <h2>Personal Information</h2>
+        <div class="col-md-6 mx-auto">
+            <div class="mb-3 d-flex align-items-center">
+                <i class="bi bi-envelope contact-icon"></i>
+                <div><strong>Email:</strong> <%= email %></div>
+            </div>
+            <div class="mb-3 d-flex align-items-center">
+                <i class="bi bi-calendar contact-icon"></i>
+                <div><strong>Date of Birth:</strong> <%= dob %></div>
+            </div>
+            <div class="mb-3 d-flex align-items-center">
+                <i class="bi bi-person-badge contact-icon"></i>
+                <div><strong>Role:</strong> <%= role %></div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="mt-5 py-4">
+    <div class="container text-left">
+        <div class="mb-3">
+            <a href="#" class="footer-icon"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="footer-icon"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="footer-icon"><i class="bi bi-linkedin"></i></a>
+        </div>
+        <p class="mb-1, text-left"><a href="#" class="text-dark text-decoration-underline">Privacy Policy</a></p>
+        <p class="mb-1, text-left">3500 Matcha Ave West,<br>MatchaLand, M2A 3T4</p>
+        <p class="mb-0, text-center">&copy; 2025 BrightCare Dental. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

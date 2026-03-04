@@ -29,7 +29,7 @@ public class signUpServlet extends HttpServlet {
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
 
-        // 1️⃣ Check password match
+        //Check password match
         if (!password.equals(confirmPassword)) {
             request.setAttribute("error", "Passwords do not match!");
             request.getRequestDispatcher("signUp.jsp").forward(request, response);
@@ -48,7 +48,7 @@ public class signUpServlet extends HttpServlet {
 
             NodeList users = doc.getElementsByTagName("user");
 
-            // 2️⃣ Check for duplicate username
+            //Check for duplicate username
             for (int i = 0; i < users.getLength(); i++) {
                 Element user = (Element) users.item(i);
                 String existingUser = user.getElementsByTagName("userid")
@@ -60,8 +60,19 @@ public class signUpServlet extends HttpServlet {
                     return;
                 }
             }
+            for (int i = 0; i < users.getLength(); i++) {
+                Element user = (Element) users.item(i);
+                String existingUser = user.getElementsByTagName("email")
+                        .item(0).getTextContent();
 
-            // 3️⃣ Create new user node
+                if (existingUser.equals(email)) {
+                    request.setAttribute("error", "Email already exists!");
+                    request.getRequestDispatcher("signUp.jsp").forward(request, response);
+                    return;
+                }
+            }
+
+            //Create new user node
             Element newUser = doc.createElement("user");
 
             Element xmlRole = doc.createElement("role");
@@ -91,7 +102,7 @@ public class signUpServlet extends HttpServlet {
 
             doc.getDocumentElement().appendChild(newUser);
 
-            // 4️⃣ Save XML file
+            //Save XML file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
@@ -101,7 +112,7 @@ public class signUpServlet extends HttpServlet {
 
             transformer.transform(source, result);
 
-            // 5️⃣ Redirect to login page
+            //Redirect to login page
             response.sendRedirect("login.html");
 
         } catch (Exception e) {
