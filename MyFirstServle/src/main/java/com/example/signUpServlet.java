@@ -56,7 +56,7 @@ public class signUpServlet extends HttpServlet {
 
                 if (existingUser.equals(userid)) {
                     request.setAttribute("error", "Username already exists!");
-                    request.getRequestDispatcher("register.jsp").forward(request, response);
+                    request.getRequestDispatcher("signUp.jsp").forward(request, response);
                     return;
                 }
             }
