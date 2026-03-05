@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+                        
+    
+    
+    
+    
+    <user>
+                                                
+        
+        
+        
+        
+        <userid>admin</userid>
+                                                
+        
+        
+        
+        
+        <password>1234</password>
+                                                
+        
+        
+        
+        
+        <role>staff</role>
+                                                
+        
+        
+        
+        
+        <fullname>Admin User</fullname>
+                                                
+        
+        
+        
+        
+        <email>admin@brightcare.com</email>
+                                            
+    
+    
+    
+    
+    </user>
+                    
+    
+    
+    
+    
+    <user>
+                                        
+        
+        
+        
+        <role>dentist</role>
+                                        
+        
+        
+        
+        <fullname>brian</fullname>
+                                        
+        
+        
+        
+        <userid>T</userid>
+                                        
+        
+        
+        
+        <email>matcha@gmail.com</email>
+                                        
+        
+        
+        
+        <dob>2002-11-10</dob>
+                                        
+        
+        
+        
+        <password>matcha</password>
+                                    
+    
+    
+    
+    </user>
+                
+    
+    
+    
+    <user>
+                                
+        
+        
+        <role>patient</role>
+                                
+        
+        
+        <fullname>matcha</fullname>
+                                
+        
+        
+        <userid>mT</userid>
+                                
+        
+        
+        <email>matcha@gmail.com</email>
+                                
+        
+        
+        <dob>2000-11-11</dob>
+                                
+        
+        
+        <password>matcha</password>
+                            
+    
+    
+    </user>
+            
+    
+    
+    <user>
+                        
+        
+        <role>patient</role>
+                        
+        
+        <fullname>Amanda</fullname>
+                        
+        
+        <userid>TT</userid>
+                        
+        
+        <email>AAA@gmail.com</email>
+                        
+        
+        <dob>1000-11-11</dob>
+                        
+        
+        <password>123</password>
+                    
+    
+    </user>
+        
+    
+    <user>
+                
+        <role>dentist</role>
+                
+        <fullname>brian</fullname>
+                
+        <userid>atygsygs</userid>
+                
+        <email>matcha@gmail.com</email>
+                
+        <dob>1111-11-11</dob>
+                
+        <password>bbt</password>
+            
+    </user>
+    
+    <user>
+        <role>dentist</role>
+        <fullname>Brian</fullname>
+        <userid>Brian</userid>
+        <email>matchaT@gmail.com</email>
+        <dob>2000-11-13</dob>
+        <password>1234</password>
+    </user>
+</users>
